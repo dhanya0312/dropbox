@@ -1,0 +1,16 @@
+{
+  "name": "cliutilities",
+  "version": "1.0.0",
+  "description": "CLI Utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.2",
+    "pn": "^1.0.0",
+    "yargs": "^3.31.0"
+  }
+}
