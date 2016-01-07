@@ -1,17 +1,30 @@
 {
-  "name": "proxy-server",
+  "name": "dropbox",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dropbox",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "dhanya",
   "license": "ISC",
-  "devDependencies": {},
   "dependencies": {
-    "request": "^2.67.0",
-    "through": "^2.3.8",
+    "archiver": "^0.21.0",
+    "bluebird-nodeify": "^1.0.0",
+    "body-parser": "^1.14.2",
+    "chokidar": "^1.4.2",
+    "express": "^4.13.3",
+    "express-then": "^1.0.3",
+    "fs": "0.0.2",
+    "json-over-tcp": "^0.3.2",
+    "mime-types": "^2.1.9",
+    "mkdirp": "^0.5.1",
+    "morgan": "^1.6.1",
+    "nodeify": "^1.0.0",
+    "path": "^0.12.7",
+    "rimraf": "^2.5.0",
+    "songbird": "^1.0.1",
+    "trycatch": "^1.5.20",
     "yargs": "^3.31.0"
   }
 }

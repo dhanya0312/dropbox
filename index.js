@@ -1,46 +1,19 @@
-"use strict";
-let http = require('http')
-let fs = require('fs')
-let through = require('through')
-let request = require('request')
-let argv = require('yargs')
-    .default('host', '127.0.0.1:8000')
-    .argv
-let scheme = 'http://'
-let port = argv.port || (argv.host === '127.0.0.1' ? 8000 : 80)
-let destinationUrl = argv.url || scheme + argv.host + ':' + port
-let logStream = argv.logfile ? fs.createWriteStream(argv.logfile) : process.stdout
+let trycatch = require("trycatch");
+let main = require("./main");
 
-logStream.write('hello')
+trycatch.configure({'long-stack-traces': true})
 
-http.createServer((req, res) => {
-	logStream.write(JSON.stringify(req.headers))
-	for (let header in req.headers) {
-    	res.setHeader(header, req.headers[header])
-	}
-    logStream.write(`Request received at: ${req.url}`)
-    through(req,logStream,{autoDestroy: false})
-    req.pipe(res)
-}).listen(8000)
+let handleErrorAndExit = function(err){
+	console.log('In handleErrorAndExit' , err)
+}
 
-http.createServer((req, res) => {
-	let url = destinationUrl
-	if(req.headers['x-destination-url']){
-		url = req.headers['x-destination-url']
-	}
-	let options = {
-        headers: req.headers,
-        url: url + req.url
-    }
+let handleError = function(err){
+	console.log('In handleError' , err)
+}
 
-    logStream.write(JSON.stringify(req.headers))
-    through(req,logStream,{autoDestroy: false})
+process.on('uncaughtException', handleErrorAndExit)
+process.on('unhandledRejection', handleError)
 
-    options.method = req.method
-    let destinationResponse = req.pipe(request(options))
-
-    logStream.write(JSON.stringify(req.headers))
-    destinationResponse.pipe(res)
-    through(req,logStream,{autoDestroy: false})
-
-}).listen(8001)
+console.log(main)
+//throw 'err';
+main.initialize(8000).catch(e => console.log(e.stack))
