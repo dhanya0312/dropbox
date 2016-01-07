@@ -34,5 +34,4 @@ Time spent: `<7>`
 
 ### Walkthrough
 
-`<Add your Walkthrough Gif here (by updating the image URL)>`
-![Video Walkthrough](...)
+![Video Walkthrough](https://github.com/dhanya0312/dropbox/blob/master/dropbox.gif)
