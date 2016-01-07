@@ -47,7 +47,7 @@ async function initialize(port) {
     app.head('*', setFilePath, sendHeaders, (req, res) => res.end())
 
     //GET
-   /* app.get('*', setFilePath, sendHeaders, (req, res) => {
+    app.get('*', setFilePath, sendHeaders, (req, res) => {
         if(res.body){
             res.json(res.body)
             return
@@ -55,7 +55,7 @@ async function initialize(port) {
 
         fs.createReadStream(req.filePath).pipe(res)
         
-    })*/
+    })
 
     app.get('*', setFilePath, sendHeaders, (req, res) => {
             
